@@ -1,4 +1,4 @@
 package FinalProject;
 
-public class Juniors {
+public class Juniors extends GirlScout {
 }

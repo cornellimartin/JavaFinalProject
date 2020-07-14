@@ -1,4 +1,4 @@
 package FinalProject;
 
-public class Ambassadors {
+public class Ambassadors extends GirlScout {
 }
