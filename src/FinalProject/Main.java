@@ -39,27 +39,40 @@ public class Main {
             if (name.equals("quit")){
                 continue;
             }
+
             System.out.print("Please enter the age of the girl: ");
             age = input.nextInt();
+            /**
+             * ASSIGN TO PROPER TROOP BASED ON AGE
+             */
             if (age >= DAISIES_MIN_AGE && age <= DAISIES_MAX_AGE){
-                girls.add(new Daisies());
+                girls.add(new Daisies(name, age));
             }else if (age >= BROWNIES_MIN_AGE && age <= BROWNIES_MAX_AGE){
-
+                girls.add(new Brownies(name, age));
             }
             else if (age >= JUNIORS_MIN_AGE && age <= JUNIORS_MAX_AGE){
-
+                girls.add(new Juniors(name, age));
             }else if (age >= CADETTES_MIN_AGE && age <= CADETTES_MAX_AGE){
-
+                girls.add(new Cadettes(name, age));
             }else if (age >= SENIORS_MIN_AGE && age <= SENIORS_MAX_AGE){
-
+                girls.add(new Seniors(name, age));
             }else if (age >= AMBASSADORS_MIN_AGE && age <= AMBASSADORS_MAX_AGE){
-
+                girls.add(new Ambassadors(name, age));
             }
 
-            System.out.print("Please enter the number of Samoas Cookies sold: ");
-            System.out.print("Please enter the number of Tagalongs Cookies sold: ");
-            System.out.print("Please enter the number of Thin Mint Cookies sold: ");
         } while (!name.equals("quit"));
 
+        /**
+         * STEP 1: REQUEST NUMBER OF COOKIES FOR EACH GIRL
+         * STEP 2: WRITE TO FILE
+         */
+        for (int i = 0; i < girls.size(); i++){
+            System.out.print("Please enter the number of Samoas Cookies sold by " + girls.get(i).getName() + ": ");
+            girls.get(i).setSamoas(input.nextInt());
+            System.out.print("Please enter the number of Tagalongs Cookies sold by " + girls.get(i).getName() + ": ");
+            girls.get(i).setTagalongs(input.nextInt());
+            System.out.print("Please enter the number of Thin Mint Cookies sold by " + girls.get(i).getName() + ": ");
+            girls.get(i).setThinMint(input.nextInt());
+        }
     }
 }
