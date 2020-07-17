@@ -68,11 +68,11 @@ public class Main {
          */
         for (int i = 0; i < girls.size(); i++){
             System.out.print("Please enter the number of Samoas Cookies sold by " + girls.get(i).getName() + ": ");
-            girls.get(i).setSamoas(input.nextInt());
+            girls.get(i).setSamoasSold(input.nextInt());
             System.out.print("Please enter the number of Tagalongs Cookies sold by " + girls.get(i).getName() + ": ");
-            girls.get(i).setTagalongs(input.nextInt());
+            girls.get(i).setTagalongsSold(input.nextInt());
             System.out.print("Please enter the number of Thin Mint Cookies sold by " + girls.get(i).getName() + ": ");
-            girls.get(i).setThinMint(input.nextInt());
+            girls.get(i).setThinMintsSold(input.nextInt());
         }
     }
 }
