@@ -8,9 +8,8 @@ public class GirlScout {
     private int samoasSold = 0;
     private int tagalongsSold = 0;
     private int thinMintsSold = 0;
-    private int totalCookiesSold = 0;
+    private final int totalCookiesSold = 0;
     private boolean qualified;
-    private String reward = "a candybar";
 
 
     // ***********  CONSTRUCTORS  ***********
@@ -101,7 +100,7 @@ public class GirlScout {
 
     /** Return REWARD */
     public String getReward() {
-        return reward;
+        return "You've earned a reward!";
     }
 
 }
