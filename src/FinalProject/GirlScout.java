@@ -86,7 +86,6 @@ public class GirlScout {
         this.qualified = qualified;
     }
 
-
     // ***********  OTHER METHODS  ***********
     /** Calculate and return the total amount of boxes sold */
     public int calculateTotalCookiesSold() {
@@ -102,5 +101,4 @@ public class GirlScout {
     public String getReward() {
         return "You've earned a reward!";
     }
-
 }
