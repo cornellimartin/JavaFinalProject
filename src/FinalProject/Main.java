@@ -1,11 +1,11 @@
 package FinalProject;
 
-import java.io.File;
-import java.io.PrintWriter;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
+
     public static void main(String[] args) {
         /**
          * CONSTANT VARIABLES
@@ -30,7 +30,7 @@ public class Main {
         String name;
         int age;
         Scanner input = new Scanner(System.in);
-        ArrayList<GirlScout> girls = new ArrayList<>();
+        ArrayList<GirlScout> girls = new ArrayList<>();;
 
         /**
          * REQUESTING USER INPUT
@@ -38,7 +38,7 @@ public class Main {
         do {
             System.out.print("Please enter the name of the girl, or type \"quit\" if you want to exit: ");
             name = input.nextLine();
-            if (name.equals("quit")) {
+            if (name.equals("quit")){
                 continue;
             }
 
@@ -47,25 +47,26 @@ public class Main {
             /**
              * ASSIGN TO PROPER TROOP BASED ON AGE
              */
-            if (age >= DAISIES_MIN_AGE && age <= DAISIES_MAX_AGE) {
+            if (age >= DAISIES_MIN_AGE && age <= DAISIES_MAX_AGE){
                 girls.add(new Daisies(name, age));
-            } else if (age >= BROWNIES_MIN_AGE && age <= BROWNIES_MAX_AGE) {
+            }else if (age >= BROWNIES_MIN_AGE && age <= BROWNIES_MAX_AGE){
                 girls.add(new Brownies(name, age));
-            } else if (age >= JUNIORS_MIN_AGE && age <= JUNIORS_MAX_AGE) {
+            }
+            else if (age >= JUNIORS_MIN_AGE && age <= JUNIORS_MAX_AGE){
                 girls.add(new Juniors(name, age));
-            } else if (age >= CADETTES_MIN_AGE && age <= CADETTES_MAX_AGE) {
+            }else if (age >= CADETTES_MIN_AGE && age <= CADETTES_MAX_AGE){
                 girls.add(new Cadettes(name, age));
-            } else if (age >= SENIORS_MIN_AGE && age <= SENIORS_MAX_AGE) {
+            }else if (age >= SENIORS_MIN_AGE && age <= SENIORS_MAX_AGE){
                 girls.add(new Seniors(name, age));
-            } else if (age >= AMBASSADORS_MIN_AGE && age <= AMBASSADORS_MAX_AGE) {
+            }else if (age >= AMBASSADORS_MIN_AGE && age <= AMBASSADORS_MAX_AGE){
                 girls.add(new Ambassadors(name, age));
             }
 
         } while (!name.equals("quit"));
         try {
-            File myObj = new File("cookieSales.txt");
-            if (myObj.createNewFile()) {
-                System.out.println("File created: " + myObj.getName());
+            File girlsFile = new File("cookieSales.txt");
+            if (girlsFile.createNewFile()) {
+                System.out.println("File created: " + girlsFile.getName());
             } else {
                 System.out.println("File already exists.");
             }
@@ -78,13 +79,30 @@ public class Main {
          * STEP 1: REQUEST NUMBER OF COOKIES FOR EACH GIRL
          * STEP 2: WRITE TO FILE
          */
-        for (int i = 0; i < girls.size(); i++) {
+        for (int i = 0; i < girls.size(); i++){
             System.out.print("Please enter the number of Samoas Cookies sold by " + girls.get(i).getName() + ": ");
             girls.get(i).setSamoasSold(input.nextInt());
             System.out.print("Please enter the number of Tagalongs Cookies sold by " + girls.get(i).getName() + ": ");
             girls.get(i).setTagalongsSold(input.nextInt());
             System.out.print("Please enter the number of Thin Mint Cookies sold by " + girls.get(i).getName() + ": ");
             girls.get(i).setThinMintsSold(input.nextInt());
+            try (FileWriter save = new FileWriter("cookieSales.txt", true) ) {
+
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+
+        }
+
+        /**
+         * Open and display file
+         */
+        try(FileReader girlsFile = new FileReader("cookieSales.txt")) {
+
+        } catch (FileNotFoundException e) {
+            // Exception handling
+        } catch (IOException e) {
+            // Exception handling
         }
     }
 }
