@@ -56,7 +56,7 @@ public class Main {
             System.out.print("Please enter the age of the girl: ");
             age = input.nextInt();
             System.out.println();
-            input.nextLine()
+            input.nextLine();
             /**
              * ASSIGN TO PROPER TROOP BASED ON AGE
              */
