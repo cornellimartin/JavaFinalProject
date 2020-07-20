@@ -43,10 +43,11 @@ public class Main {
 
         /**
          * REQUESTING USER INPUT & DISPLAY AN ERROR IF ITS NOT WITHIN THE RANGES
-         * AND REPROMPT.
+         * AND RE-PROMPT.
          */
+        int counter = 0;
         do {
-            System.out.println("Please enter the name of the girl, \n" +
+            System.out.print("Please enter the name of the girl \n" +
                     "or type \"quit\" if you want to exit: ");
             name = input.nextLine();
             if (name.equals("quit")){
@@ -55,8 +56,19 @@ public class Main {
 
             System.out.print("Please enter the age of the girl: ");
             age = input.nextInt();
+            input.nextLine();
+            int samoas;
+            int tagalongs;
+            int thinMints;
+            System.out.print("Please enter the number of Samoas Cookies sold by " + name + ": ");
+            samoas = input.nextInt();
+            System.out.print("Please enter the number of Tagalongs Cookies sold by " + name + ": ");
+            tagalongs = input.nextInt();
+            System.out.print("Please enter the number of Thin Mints Cookies sold by " + name + ": ");
+            thinMints = input.nextInt();
             System.out.println();
             input.nextLine();
+
             /**
              * ASSIGN TO PROPER TROOP BASED ON AGE
              */
@@ -74,8 +86,12 @@ public class Main {
                 girls.add(new Ambassadors(name, age, "Ambassadors"));
             } else {
                 System.out.println("Error: Age must be between 6 - 18.");
+                continue;
             }
-
+            girls.get(counter).setSamoasSold(samoas);
+            girls.get(counter).setTagalongsSold(tagalongs);
+            girls.get(counter).setThinMintsSold(thinMints);
+            counter ++;
         } while (!name.equals("quit"));
         try {
             File girlsFile = new File("cookieSales.txt");
@@ -103,12 +119,6 @@ public class Main {
 
         // Write girl scout data file
         for (int i = 0; i < girls.size(); i++){
-            System.out.print("Please enter the number of Samoas Cookies sold by " + girls.get(i).getName() + ": ");
-            girls.get(i).setSamoasSold(input.nextInt());
-            System.out.print("Please enter the number of Tagalongs Cookies sold by " + girls.get(i).getName() + ": ");
-            girls.get(i).setTagalongsSold(input.nextInt());
-            System.out.print("Please enter the number of Thin Mint Cookies sold by " + girls.get(i).getName() + ": ");
-            girls.get(i).setThinMintsSold(input.nextInt());
             try (FileWriter save = new FileWriter("cookieSales.txt", true) ) {
                 save.write(girls.get(i).getName() + " | " + girls.get(i).getTroop() + " | " + girls.get(i).getSamoasSold() + " | " + girls.get(i).getTagalongsSold() + " | " + girls.get(i).getThinMintsSold() + " | " + girls.get(i).calculateTotalCookiesSold() + " | " + girls.get(i).getReward());
                 save.close();
@@ -124,10 +134,12 @@ public class Main {
 
             // read the file and sum the values as the data is read in, display an
             // error msg if there is an error reading and terminate prog.
-            while (readFile.hasNextLine()) {
-                String line = readFile.nextLine().trim();
-                System.out.println(line);
-            }
+                String line;
+                while(readFile.hasNextLine())
+                {
+                    System.out.println(readFile.nextLine());
+                }
+                readFile.close();
         } catch (Exception ex2) {
             System.out.println("An error occurred.");
             System.exit(1);
