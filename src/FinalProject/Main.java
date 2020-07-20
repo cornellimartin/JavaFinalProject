@@ -59,20 +59,18 @@ public class Main {
              * ASSIGN TO PROPER TROOP BASED ON AGE
              */
             if (age >= DAISIES_MIN_AGE && age <= DAISIES_MAX_AGE){
-                girls.add(new Daisies(name, age));
-            }else if (age >= BROWNIES_MIN_AGE && age <= BROWNIES_MAX_AGE){
-                girls.add(new Brownies(name, age));
-            }
-            else if (age >= JUNIORS_MIN_AGE && age <= JUNIORS_MAX_AGE){
-                girls.add(new Juniors(name, age));
-            }else if (age >= CADETTES_MIN_AGE && age <= CADETTES_MAX_AGE){
-                girls.add(new Cadettes(name, age));
-            }else if (age >= SENIORS_MIN_AGE && age <= SENIORS_MAX_AGE){
-                girls.add(new Seniors(name, age));
-            }else if (age >= AMBASSADORS_MIN_AGE && age <= AMBASSADORS_MAX_AGE){
-                girls.add(new Ambassadors(name, age));
-            }
-            else {
+                girls.add(new Daisies(name, age, "Daisies"));
+            } else if (age >= BROWNIES_MIN_AGE && age <= BROWNIES_MAX_AGE){
+                girls.add(new Brownies(name, age, "Brownies"));
+            } else if (age >= JUNIORS_MIN_AGE && age <= JUNIORS_MAX_AGE){
+                girls.add(new Juniors(name, age, "Juniors"));
+            } else if (age >= CADETTES_MIN_AGE && age <= CADETTES_MAX_AGE){
+                girls.add(new Cadettes(name, age, "Cadettes"));
+            } else if (age >= SENIORS_MIN_AGE && age <= SENIORS_MAX_AGE){
+                girls.add(new Seniors(name, age, "Seniors"));
+            } else if (age >= AMBASSADORS_MIN_AGE && age <= AMBASSADORS_MAX_AGE){
+                girls.add(new Ambassadors(name, age, "Ambassadors"));
+            } else {
                 System.out.println("Error: Age must be between 6 - 18.");
             }
 
@@ -93,6 +91,14 @@ public class Main {
          * STEP 1: REQUEST NUMBER OF COOKIES FOR EACH GIRL
          * STEP 2: WRITE TO FILE
          */
+        // Write File Header
+        try (FileWriter header = new FileWriter("cookieSales.txt", true) ) {
+                header.write("Name | Troop | Samoas | Tagalongs | Thin Mints");
+        }catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        // Write girl scout data file
         for (int i = 0; i < girls.size(); i++){
             System.out.print("Please enter the number of Samoas Cookies sold by " + girls.get(i).getName() + ": ");
             girls.get(i).setSamoasSold(input.nextInt());
@@ -101,7 +107,7 @@ public class Main {
             System.out.print("Please enter the number of Thin Mint Cookies sold by " + girls.get(i).getName() + ": ");
             girls.get(i).setThinMintsSold(input.nextInt());
             try (FileWriter save = new FileWriter("cookieSales.txt", true) ) {
-
+                save.write(girls.get(i).getName() + " | " + girls.get(i).;
             }catch (Exception e){
                 e.printStackTrace();
             }

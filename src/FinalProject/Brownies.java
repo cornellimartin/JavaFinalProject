@@ -12,8 +12,8 @@ public class Brownies extends GirlScout {
      * @param name of girl from input
      * @param age of girl from input
      */
-    public Brownies(String name, int age) {
-        super(name, age);
+    public Brownies(String name, int age, String troop) {
+        super(name, age, troop);
     }
 
     /**
@@ -23,5 +23,18 @@ public class Brownies extends GirlScout {
     @Override
     public String getReward() {
         return "Amusement Park";
+    }
+
+    // Constant variable
+    final int MIN_AMOUNT = 10;
+
+    /** Set a new QUALIFIED */
+    public void setQualified() {
+        if (calculateTotalCookiesSold() >= MIN_AMOUNT) {
+            qualified = true;
+        }
+        else {
+            qualified = false;
+        }
     }
 }

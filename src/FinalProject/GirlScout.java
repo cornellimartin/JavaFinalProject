@@ -9,7 +9,8 @@ public class GirlScout {
     private int tagalongsSold = 0;
     private int thinMintsSold = 0;
     private final int totalCookiesSold = 0;
-    private boolean qualified;
+    protected boolean qualified;
+    protected String troop = "none";
 
 
     // ***********  CONSTRUCTORS  ***********
@@ -18,9 +19,10 @@ public class GirlScout {
     }
 
     /** Construct a GirlScout object with the specified variables. */
-    public GirlScout(String name, int age) {
+    public GirlScout(String name, int age, String troop) {
         this.name = name;
         this.age = age;
+        this.troop = troop;
     }
 
 
@@ -89,11 +91,6 @@ public class GirlScout {
     /** Calculate and return the total amount of boxes sold */
     public int calculateTotalCookiesSold() {
         return samoasSold + tagalongsSold + thinMintsSold;
-    }
-
-    /** Return a string representation of this object */
-    public String toString() {
-        return "A STRING";
     }
 
     /** Return REWARD */

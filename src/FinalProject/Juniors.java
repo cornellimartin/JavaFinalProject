@@ -12,8 +12,8 @@ public class Juniors extends GirlScout {
      * @param name of girl from input
      * @param age of girl from input
      */
-    public Juniors(String name, int age) {
-        super(name, age);
+    public Juniors(String name, int age, String troop) {
+        super(name, age, troop);
     }
 
     /**
@@ -23,5 +23,18 @@ public class Juniors extends GirlScout {
     @Override
     public String getReward() {
         return "Waterpark";
+    }
+
+    // Constant variable
+    final int MIN_AMOUNT = 15;
+
+    /** Set a new QUALIFIED */
+    public void setQualified() {
+        if (calculateTotalCookiesSold() >= MIN_AMOUNT) {
+            qualified = true;
+        }
+        else {
+            qualified = false;
+        }
     }
 }

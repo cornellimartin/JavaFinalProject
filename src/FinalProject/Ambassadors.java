@@ -12,16 +12,29 @@ public class Ambassadors extends GirlScout {
      * @param name of girl from input
      * @param age of girl from input
      */
-    public Ambassadors(String name, int age) {
-        super(name, age);
+    public Ambassadors(String name, int age, String troop) {
+        super(name, age, troop);
     }
 
     /**
-     *
+     * getReward Method
      * @return reward string
      */
     @Override
     public String getReward() {
         return "Disney Cruise";
+    }
+
+    // Constant variable
+    final int MIN_AMOUNT = 30;
+
+    /** Set a new QUALIFIED */
+    public void setQualified() {
+        if (calculateTotalCookiesSold() >= MIN_AMOUNT) {
+            qualified = true;
+        }
+        else {
+            qualified = false;
+        }
     }
 }
