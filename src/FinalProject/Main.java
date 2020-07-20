@@ -55,6 +55,8 @@ public class Main {
 
             System.out.print("Please enter the age of the girl: ");
             age = input.nextInt();
+            System.out.println();
+            input.nextLine()
             /**
              * ASSIGN TO PROPER TROOP BASED ON AGE
              */
@@ -118,28 +120,19 @@ public class Main {
         // open the file, display error msg if it cant be opened and terminate prog.
         try {
             //Create a scanner to read the file
-            Scanner readFile = new Scanner(myFile);
+            Scanner readFile = new Scanner("cookieSales.txt");
 
             // read the file and sum the values as the data is read in, display an
             // error msg if there is an error reading and terminate prog.
             while (readFile.hasNextLine()) {
                 String line = readFile.nextLine().trim();
-                sum += Integer.parseInt(line);
+                System.out.println(line);
             }
-        } catch (IOException ex2) {
+        } catch (Exception ex2) {
             System.out.println("An error occurred.");
             System.exit(1);
         }
 
-        /**
-         * Open and display file
-         */
-        try(FileReader girlsFile = new FileReader("cookieSales.txt")) {
 
-        } catch (FileNotFoundException e) {
-            // Exception handling
-        } catch (IOException e) {
-            // Exception handling
-        }
     }
 }
