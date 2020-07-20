@@ -93,7 +93,8 @@ public class Main {
          */
         // Write File Header
         try (FileWriter header = new FileWriter("cookieSales.txt", true) ) {
-                header.write("Name | Troop | Samoas | Tagalongs | Thin Mints");
+                header.write("Name | Troop | Samoas | Tagalongs | Thin Mints | Total | Activity");
+                header.close();
         }catch (Exception e) {
             e.printStackTrace();
         }
@@ -107,11 +108,11 @@ public class Main {
             System.out.print("Please enter the number of Thin Mint Cookies sold by " + girls.get(i).getName() + ": ");
             girls.get(i).setThinMintsSold(input.nextInt());
             try (FileWriter save = new FileWriter("cookieSales.txt", true) ) {
-                save.write(girls.get(i).getName() + " | " + girls.get(i).;
+                save.write(girls.get(i).getName() + " | " + girls.get(i).getTroop() + " | " + girls.get(i).getSamoasSold() + " | " + girls.get(i).getTagalongsSold() + " | " + girls.get(i).getThinMintsSold() + " | " + girls.get(i).calculateTotalCookiesSold() + " | " + girls.get(i).getReward());
+                save.close();
             }catch (Exception e){
                 e.printStackTrace();
             }
-
         }
 
         /**

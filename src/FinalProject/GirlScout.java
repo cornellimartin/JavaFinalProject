@@ -87,6 +87,15 @@ public class GirlScout {
         this.qualified = qualified;
     }
 
+    /** Get Troop */
+    public String getTroop() {
+        return troop;
+    }
+
+    /** Set Troop */
+    public void setTroop(String troop) {
+        this.troop = troop;
+    }
     // ***********  OTHER METHODS  ***********
     /** Calculate and return the total amount of boxes sold */
     public int calculateTotalCookiesSold() {
