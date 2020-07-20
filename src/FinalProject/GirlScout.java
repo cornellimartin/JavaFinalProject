@@ -42,7 +42,6 @@ public class GirlScout {
 
     /** Set a new AGE */
     public void setAge(int age) {
-
         this.age = age;
     }
 
@@ -89,7 +88,7 @@ public class GirlScout {
     // ***********  OTHER METHODS  ***********
     /** Calculate and return the total amount of boxes sold */
     public int calculateTotalCookiesSold() {
-        return totalCookiesSold;
+        return samoasSold + tagalongsSold + thinMintsSold;
     }
 
     /** Return a string representation of this object */

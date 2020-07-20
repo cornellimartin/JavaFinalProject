@@ -1,8 +1,8 @@
 package FinalProject;
 
-import java.io.*;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.io.*;
 
 public class Main {
 
@@ -29,14 +29,25 @@ public class Main {
          */
         String name;
         int age;
+        // Create a Scanner
         Scanner input = new Scanner(System.in);
+        // Create an ArrayList
         ArrayList<GirlScout> girls = new ArrayList<>();;
 
+
+        // Explanation
+        System.out.println("This program allows the user to input Girl Scouts\n" +
+                "names, ages, and cookies sold, and tells them if they have\n" +
+                "sold enough boxes to earn a reward, and what that reward is.\n" +
+                "It saves the information to a file, and displays it at the end.\n");
+
         /**
-         * REQUESTING USER INPUT
+         * REQUESTING USER INPUT & DISPLAY AN ERROR IF ITS NOT WITHIN THE RANGES
+         * AND REPROMPT.
          */
         do {
-            System.out.print("Please enter the name of the girl, or type \"quit\" if you want to exit: ");
+            System.out.println("Please enter the name of the girl, \n" +
+                    "or type \"quit\" if you want to exit: ");
             name = input.nextLine();
             if (name.equals("quit")){
                 continue;
@@ -60,6 +71,9 @@ public class Main {
                 girls.add(new Seniors(name, age));
             }else if (age >= AMBASSADORS_MIN_AGE && age <= AMBASSADORS_MAX_AGE){
                 girls.add(new Ambassadors(name, age));
+            }
+            else {
+                System.out.println("Error: Age must be between 6 - 18.");
             }
 
         } while (!name.equals("quit"));
