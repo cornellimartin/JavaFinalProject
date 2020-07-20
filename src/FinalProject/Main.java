@@ -115,6 +115,22 @@ public class Main {
             }
         }
 
+        // open the file, display error msg if it cant be opened and terminate prog.
+        try {
+            //Create a scanner to read the file
+            Scanner readFile = new Scanner(myFile);
+
+            // read the file and sum the values as the data is read in, display an
+            // error msg if there is an error reading and terminate prog.
+            while (readFile.hasNextLine()) {
+                String line = readFile.nextLine().trim();
+                sum += Integer.parseInt(line);
+            }
+        } catch (IOException ex2) {
+            System.out.println("An error occurred.");
+            System.exit(1);
+        }
+
         /**
          * Open and display file
          */
