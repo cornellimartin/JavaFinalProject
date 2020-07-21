@@ -42,8 +42,8 @@ public class Main {
 
         // Explanation
         System.out.println("This program allows the user to input Girl Scouts names, ages, and\n" +
-                " cookies sold, and tells them if they have sold enough boxes to earn a reward,\n" +
-                " and what that reward is.\n It saves the information to a file, and displays it at the end.\n");
+                "cookies sold, and tells them if they have sold enough boxes to earn a reward,\n" +
+                "and what that reward is.\nIt saves the information to a file, and displays it at the end.\n");
 
         /**
          * STEP 1: USER INFO
