@@ -41,10 +41,9 @@ public class Main {
 
 
         // Explanation
-        System.out.println("This program allows the user to input Girl Scouts\n" +
-                "names, ages, and cookies sold, and tells them if they have\n" +
-                "sold enough boxes to earn a reward, and what that reward is.\n" +
-                "It saves the information to a file, and displays it at the end.\n");
+        System.out.println("This program allows the user to input Girl Scouts names, ages, and\n" +
+                " cookies sold, and tells them if they have sold enough boxes to earn a reward,\n" +
+                " and what that reward is.\n It saves the information to a file, and displays it at the end.\n");
 
         /**
          * STEP 1: USER INFO
@@ -123,7 +122,7 @@ public class Main {
             String headerLine = String.format("%-20s | %-15s | %-6s | %-9s | %-10s | %-5s | %-20s %n" +
                             "---------------------------------------------------------------------------------" +
                             "----------------------%n","NAME", "TROOP", "SAMOAS", "TAGALONGS", "THIN MINTS",
-                    "TOTAL","ACTIVITY");
+                            "TOTAL","ACTIVITY");
             save.write(headerLine);
 
             // Write user input data
