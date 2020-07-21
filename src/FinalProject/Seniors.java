@@ -22,7 +22,11 @@ public class Seniors extends GirlScout {
      */
     @Override
     public String getReward() {
-        return "Disneyland & Universal";
+        if(qualified) {
+            return "Space Camp";
+        }else{
+            return super.getReward();
+        }
     }
 
     // Constant variable

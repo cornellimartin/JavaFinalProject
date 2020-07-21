@@ -21,8 +21,13 @@ public class Juniors extends GirlScout {
      * @return reward string
      */
     @Override
-    public String getReward() {
-        return "Waterpark";
+    public String getReward()
+    {
+        if(qualified) {
+            return "Water Park";
+        }else{
+            return super.getReward();
+        }
     }
 
     // Constant variable

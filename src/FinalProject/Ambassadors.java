@@ -22,7 +22,11 @@ public class Ambassadors extends GirlScout {
      */
     @Override
     public String getReward() {
-        return "Disney Cruise";
+        if(qualified) {
+            return "Disney Cruise";
+        }else{
+            return super.getReward();
+        }
     }
 
     // Constant variable

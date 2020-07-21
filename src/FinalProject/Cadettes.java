@@ -22,7 +22,11 @@ public class Cadettes extends GirlScout {
      */
     @Override
     public String getReward() {
-        return "Disneyland";
+        if(qualified) {
+            return "Disneyland";
+        }else{
+            return super.getReward();
+        }
     }
 
     // Constant variable

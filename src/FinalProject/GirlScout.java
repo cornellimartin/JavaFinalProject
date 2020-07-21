@@ -83,7 +83,7 @@ public class GirlScout {
     }
 
     /** Set a new QUALIFIED */
-    public void setQualified(boolean qualified) {
+    public void setQualified() {
         this.qualified = qualified;
     }
 
@@ -104,6 +104,6 @@ public class GirlScout {
 
     /** Return REWARD */
     public String getReward() {
-        return "You've earned a reward!";
+        return "Not Qualified";
     }
 }

@@ -32,7 +32,8 @@ public class Main {
         // Create a Scanner
         Scanner input = new Scanner(System.in);
         // Create an ArrayList
-        ArrayList<GirlScout> girls = new ArrayList<>();;
+        ArrayList<GirlScout> girls = new ArrayList<>();
+        ;
 
 
         // Explanation
@@ -50,13 +51,34 @@ public class Main {
             System.out.print("Please enter the name of the girl \n" +
                     "or type \"quit\" if you want to exit: ");
             name = input.nextLine();
-            if (name.equals("quit")){
+            if (name.equals("quit")) {
                 continue;
             }
 
             System.out.print("Please enter the age of the girl: ");
             age = input.nextInt();
             input.nextLine();
+
+            /**
+             * ASSIGN TO PROPER TROOP BASED ON AGE
+             */
+            if (age >= DAISIES_MIN_AGE && age <= DAISIES_MAX_AGE) {
+                girls.add(new Daisies(name, age, "Daisies"));
+            } else if (age >= BROWNIES_MIN_AGE && age <= BROWNIES_MAX_AGE) {
+                girls.add(new Brownies(name, age, "Brownies"));
+            } else if (age >= JUNIORS_MIN_AGE && age <= JUNIORS_MAX_AGE) {
+                girls.add(new Juniors(name, age, "Juniors"));
+            } else if (age >= CADETTES_MIN_AGE && age <= CADETTES_MAX_AGE) {
+                girls.add(new Cadettes(name, age, "Cadettes"));
+            } else if (age >= SENIORS_MIN_AGE && age <= SENIORS_MAX_AGE) {
+                girls.add(new Seniors(name, age, "Seniors"));
+            } else if (age >= AMBASSADORS_MIN_AGE && age <= AMBASSADORS_MAX_AGE) {
+                girls.add(new Ambassadors(name, age, "Ambassadors"));
+            } else {
+                System.out.println("Error: Age must be between 6 - 18.\n");
+                continue;
+            }
+
             int samoas;
             int tagalongs;
             int thinMints;
@@ -69,30 +91,13 @@ public class Main {
             System.out.println();
             input.nextLine();
 
-            /**
-             * ASSIGN TO PROPER TROOP BASED ON AGE
-             */
-            if (age >= DAISIES_MIN_AGE && age <= DAISIES_MAX_AGE){
-                girls.add(new Daisies(name, age, "Daisies"));
-            } else if (age >= BROWNIES_MIN_AGE && age <= BROWNIES_MAX_AGE){
-                girls.add(new Brownies(name, age, "Brownies"));
-            } else if (age >= JUNIORS_MIN_AGE && age <= JUNIORS_MAX_AGE){
-                girls.add(new Juniors(name, age, "Juniors"));
-            } else if (age >= CADETTES_MIN_AGE && age <= CADETTES_MAX_AGE){
-                girls.add(new Cadettes(name, age, "Cadettes"));
-            } else if (age >= SENIORS_MIN_AGE && age <= SENIORS_MAX_AGE){
-                girls.add(new Seniors(name, age, "Seniors"));
-            } else if (age >= AMBASSADORS_MIN_AGE && age <= AMBASSADORS_MAX_AGE){
-                girls.add(new Ambassadors(name, age, "Ambassadors"));
-            } else {
-                System.out.println("Error: Age must be between 6 - 18.");
-                continue;
-            }
             girls.get(counter).setSamoasSold(samoas);
             girls.get(counter).setTagalongsSold(tagalongs);
             girls.get(counter).setThinMintsSold(thinMints);
-            counter ++;
+            girls.get(counter).setQualified();
+            counter++;
         } while (!name.equals("quit"));
+
         try {
             File girlsFile = new File("cookieSales.txt");
             if (girlsFile.createNewFile()) {
@@ -110,41 +115,25 @@ public class Main {
          * STEP 2: WRITE TO FILE
          */
         // Write File Header
-        try (FileWriter header = new FileWriter("cookieSales.txt", true) ) {
-                header.write("Name | Troop | Samoas | Tagalongs | Thin Mints | Total | Activity");
-                header.close();
-        }catch (Exception e) {
+        try (FileWriter header = new FileWriter("cookieSales.txt", true)) {
+            String headerLine = String.format("%-20s | %-15s | %-6s | %-9s | %-10s | %-5s | %-20s %n-------------------------------------------------------------------------------------------------------%n%n","NAME", "TROOP", "SAMOAS", "TAGALONGS", "THIN MINTS", "TOTAL","ACTIVITY");
+            header.write(headerLine);
+            header.close();
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
         // Write girl scout data file
-        for (int i = 0; i < girls.size(); i++){
-            try (FileWriter save = new FileWriter("cookieSales.txt", true) ) {
-                save.write(girls.get(i).getName() + " | " + girls.get(i).getTroop() + " | " + girls.get(i).getSamoasSold() + " | " + girls.get(i).getTagalongsSold() + " | " + girls.get(i).getThinMintsSold() + " | " + girls.get(i).calculateTotalCookiesSold() + " | " + girls.get(i).getReward());
-                save.close();
-            }catch (Exception e){
-                e.printStackTrace();
-            }
-        }
-
-        // open the file, display error msg if it cant be opened and terminate prog.
         try {
-            //Create a scanner to read the file
-            Scanner readFile = new Scanner("cookieSales.txt");
-
-            // read the file and sum the values as the data is read in, display an
-            // error msg if there is an error reading and terminate prog.
-                String line;
-                while(readFile.hasNextLine())
-                {
-                    System.out.println(readFile.nextLine());
-                }
-                readFile.close();
-        } catch (Exception ex2) {
-            System.out.println("An error occurred.");
-            System.exit(1);
+            FileWriter save = new FileWriter("cookieSales.txt", true);
+            for (int i = 0; i < girls.size(); i++) {
+                String girl_data = String.format("%-20s | %-15s | %-6s | %-9s | %-10s | %-5s | %-20s %n", girls.get(i).getName(), girls.get(i).getTroop(), girls.get(i).getSamoasSold(), girls.get(i).getTagalongsSold(), girls.get(i).getThinMintsSold(), girls.get(i).calculateTotalCookiesSold(), girls.get(i).getReward());
+                save.write(girl_data);
+            }
+            save.write("\n\n");
+            save.close();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-
-
     }
 }

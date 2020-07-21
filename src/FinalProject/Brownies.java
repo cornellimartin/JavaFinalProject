@@ -22,7 +22,11 @@ public class Brownies extends GirlScout {
      */
     @Override
     public String getReward() {
-        return "Amusement Park";
+        if(qualified) {
+            return "Amusement Park";
+        }else{
+            return super.getReward();
+        }
     }
 
     // Constant variable

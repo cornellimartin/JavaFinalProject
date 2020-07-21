@@ -21,8 +21,13 @@ public class Daisies extends GirlScout {
      * @return reward string
      */
     @Override
-    public String getReward() {
-        return "Mini Golf";
+    public String getReward()
+    {
+        if(qualified) {
+            return "Mini Golf";
+        }else{
+            return super.getReward();
+        }
     }
 
     // Constant variable
