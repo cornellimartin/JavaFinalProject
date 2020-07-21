@@ -29,11 +29,15 @@ public class Main {
          */
         String name;
         int age;
+        int samoas;
+        int tagalongs;
+        int thinMints;
+        int counter = 0;
+
         // Create a Scanner
         Scanner input = new Scanner(System.in);
         // Create an ArrayList
         ArrayList<GirlScout> girls = new ArrayList<>();
-        ;
 
 
         // Explanation
@@ -43,10 +47,11 @@ public class Main {
                 "It saves the information to a file, and displays it at the end.\n");
 
         /**
+         * STEP 1: USER INFO
          * REQUESTING USER INPUT & DISPLAY AN ERROR IF ITS NOT WITHIN THE RANGES
          * AND RE-PROMPT.
          */
-        int counter = 0;
+
         do {
             System.out.print("Please enter the name of the girl \n" +
                     "or type \"quit\" if you want to exit: ");
@@ -79,9 +84,6 @@ public class Main {
                 continue;
             }
 
-            int samoas;
-            int tagalongs;
-            int thinMints;
             System.out.print("Please enter the number of Samoas Cookies sold by " + name + ": ");
             samoas = input.nextInt();
             System.out.print("Please enter the number of Tagalongs Cookies sold by " + name + ": ");
@@ -96,10 +98,14 @@ public class Main {
             girls.get(counter).setThinMintsSold(thinMints);
             girls.get(counter).setQualified();
             counter++;
+
         } while (!name.equals("quit"));
 
+
+        /** STEP 2: WRITE TO FILE */
+        // Open or create file
+        File girlsFile = new File("cookieSales.txt");
         try {
-            File girlsFile = new File("cookieSales.txt");
             if (girlsFile.createNewFile()) {
                 System.out.println("File created: " + girlsFile.getName());
             } else {
@@ -108,32 +114,48 @@ public class Main {
         } catch (Exception e) {
             System.out.println("An error occurred.");
             e.printStackTrace();
-
-        }
-        /**
-         * STEP 1: REQUEST NUMBER OF COOKIES FOR EACH GIRL
-         * STEP 2: WRITE TO FILE
-         */
-        // Write File Header
-        try (FileWriter header = new FileWriter("cookieSales.txt", true)) {
-            String headerLine = String.format("%-20s | %-15s | %-6s | %-9s | %-10s | %-5s | %-20s %n-------------------------------------------------------------------------------------------------------%n%n","NAME", "TROOP", "SAMOAS", "TAGALONGS", "THIN MINTS", "TOTAL","ACTIVITY");
-            header.write(headerLine);
-            header.close();
-        } catch (Exception e) {
-            e.printStackTrace();
         }
 
-        // Write girl scout data file
+        // Write girl scout data to file
         try {
-            FileWriter save = new FileWriter("cookieSales.txt", true);
+            FileWriter save = new FileWriter(girlsFile, true);
+            // Write File Header
+            String headerLine = String.format("%-20s | %-15s | %-6s | %-9s | %-10s | %-5s | %-20s %n" +
+                            "---------------------------------------------------------------------------------" +
+                            "----------------------%n%n","NAME", "TROOP", "SAMOAS", "TAGALONGS", "THIN MINTS",
+                    "TOTAL","ACTIVITY");
+            save.write(headerLine);
+
+            // Write user input data
             for (int i = 0; i < girls.size(); i++) {
-                String girl_data = String.format("%-20s | %-15s | %-6s | %-9s | %-10s | %-5s | %-20s %n", girls.get(i).getName(), girls.get(i).getTroop(), girls.get(i).getSamoasSold(), girls.get(i).getTagalongsSold(), girls.get(i).getThinMintsSold(), girls.get(i).calculateTotalCookiesSold(), girls.get(i).getReward());
+                String girl_data = String.format("%-20s | %-15s | %-6s | %-9s | %-10s | %-5s | %-20s %n",
+                        girls.get(i).getName(), girls.get(i).getTroop(), girls.get(i).getSamoasSold(),
+                        girls.get(i).getTagalongsSold(), girls.get(i).getThinMintsSold(),
+                        girls.get(i).calculateTotalCookiesSold(), girls.get(i).getReward());
                 save.write(girl_data);
             }
             save.write("\n\n");
             save.close();
         } catch (Exception e) {
             e.printStackTrace();
+        }
+
+
+        /** STEP 3: READ FROM THE FILE AND DISPLAY */
+        // open the file, display error msg if it cant be opened and terminate prog.
+        try {
+            //Create a scanner to read the file
+            Scanner readFile = new Scanner(girlsFile);
+
+            // read the file, display an error msg
+            // if there is an error reading and terminate prog.
+            while (readFile.hasNextLine()) {
+                String line = readFile.nextLine().trim();
+                System.out.print(line + "\n");
+            }
+        } catch (IOException ex2) {
+            System.out.println("An error occurred.");
+            System.exit(1);
         }
     }
 }
