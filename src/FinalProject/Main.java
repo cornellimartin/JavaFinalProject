@@ -122,7 +122,7 @@ public class Main {
             // Write File Header
             String headerLine = String.format("%-20s | %-15s | %-6s | %-9s | %-10s | %-5s | %-20s %n" +
                             "---------------------------------------------------------------------------------" +
-                            "----------------------%n%n","NAME", "TROOP", "SAMOAS", "TAGALONGS", "THIN MINTS",
+                            "----------------------%n","NAME", "TROOP", "SAMOAS", "TAGALONGS", "THIN MINTS",
                     "TOTAL","ACTIVITY");
             save.write(headerLine);
 
